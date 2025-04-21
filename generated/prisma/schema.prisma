@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  boards    Board[]
+}
+
+model Board {
+  id        String   @id @default(cuid())
+  title     String
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  lists     List[]
+}
+
+model List {
+  id       String @id @default(cuid())
+  title    String
+  position Int // for ordering lists in a board
+  boardId  String
+  board    Board  @relation(fields: [boardId], references: [id])
+  tasks    Task[]
+}
+
+model Task {
+  id          String    @id @default(cuid())
+  title       String
+  description String?
+  status      String // optional: "todo", "in-progress", "done"
+  position    Int // for ordering tasks in a list
+  dueDate     DateTime?
+  createdAt   DateTime  @default(now())
+  listId      String
+  list        List      @relation(fields: [listId], references: [id])
+}
