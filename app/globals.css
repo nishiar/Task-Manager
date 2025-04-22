@@ -1,148 +1,46 @@
-/* Reset some basic styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html,
+/* app/globals.css */
+
+/* app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS variables for shadcn + Tailwind */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 47.4% 11.2%;
+  --border: 214.3 31.8% 91.4%;
+  --ring: 215 20.2% 65.1%;
+}
+
+.dark {
+  --background: 222.2 47.4% 11.2%;
+  --foreground: 210 40% 98%;
+  --border: 216.2 32.6% 17.5%;
+  --ring: 216.2 32.6% 17.5%;
+}
+
+
+/* 2. Your reset + base styles */
+@layer base {
   body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    @apply m-0 px-4 font-sans
+           bg-background text-foreground;
   }
-  
-  body {
-    margin: 0;
-    padding: 20px;
-  }
-  
-  h1, h2 {
-    font-family: 'Helvetica', sans-serif;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  /* Styling for form elements */
-  input[type='text'],
-  input[type='date'],
-  button {
-    font-size: 16px;
-    padding: 10px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-  }
-  
-  button {
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    border: none;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Layout and spacing */
-  main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
+
+  h1,
   h2 {
-    margin-top: 20px;
+    @apply font-sans;
   }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
+}
+
+/* 3. Grouped utilities */
+@layer utilities {
+  .bordered-outline {
+    @apply border border-border outline outline-ring;
   }
-  
-  li {
-    background-color: #f9f9f9;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 4px;
+
+  .dark-mode {
+    @apply bg-gray-900 text-white;
   }
-  
-  li strong {
-    font-weight: bold;
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 600px) {
-    input[type='text'],
-    input[type='date'],
-    button {
-      width: 100%;
-    }
-  }
-  /* Task Card Styles */
-.task-card {
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;        /* light gray border */
-    border-radius: 8px;               /* rounded corners */
-    padding: 16px;                    /* inner spacing */
-    margin: 12px 0;                   /* vertical spacing between cards */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* subtle shadow */
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .task-card__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .task-card__title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #2d3748; /* dark gray */
-  }
-  
-  .task-card__date {
-    font-size: 0.875rem;
-    color: #718096; /* mid gray */
-  }
-  
-  .task-card__description {
-    margin: 8px 0;
-    line-height: 1.5;
-    color: #4a5568; /* gray */
-  }
-  
-  /* If you have action buttons inside the card: */
-  .task-card__actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-    margin-top: 12px;
-  }
-  
-  .task-card__actions button {
-    padding: 8px 12px;
-    font-size: 0.875rem;
-    border-radius: 4px;
-    border: 1px solid #cbd5e0;
-    background-color: #edf2f7;
-    cursor: pointer;
-  }
-  
-  .task-card__actions button:hover {
-    background-color: #e2e8f0;
-  }
-  
-  
+}

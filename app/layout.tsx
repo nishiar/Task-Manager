@@ -1,5 +1,5 @@
 // app/layout.tsx
-import './globals.css';
+import '@/app/globals.css';
 import Providers from '@/app/providers';
 import type { Metadata } from 'next';
 

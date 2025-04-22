@@ -31,10 +31,10 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask }) => {
   };
 
   return (
-    <div>
-      <h2>Tasks</h2>
+    <div className="space-y-6">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-4">Your Tasks</h2>
       {tasks.length === 0 ? (
-        <p>No tasks available</p>
+        <p className="text-gray-500">No tasks available</p>
       ) : (
         tasks.map((task) => (
           <TaskCard
